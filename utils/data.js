@@ -1,0 +1,192 @@
+const names = [
+  "Jasmine Patel",
+  "Connor Mitchell",
+  "Sophia Nguyen",
+  "Elijah Thompson",
+  "Olivia Smith",
+  "Xavier Rodriguez",
+  "Mia Johnson",
+  "Gabriel Brown",
+  "Isabella Kim",
+  "Liam Jones",
+  "Ava Martinez",
+  "Noah White",
+  "Emma Garcia",
+  "Lucas Lee",
+  "Charlotte Williams",
+  "Aiden Jackson",
+  "Harper Davis",
+  "Ethan Wilson",
+  "Amelia Taylor",
+  "Mason Thomas",
+  "Evelyn Hernandez",
+  "Logan Robinson",
+  "Emily Clark",
+  "Owen Lewis",
+  "Abigail Moore",
+  "Jackson Walker",
+  "Chloe Adams",
+  "Carter Turner",
+  "Grace Stewart",
+  "Caleb King",
+  "Madison Baker",
+  "Henry Green",
+  "Zoe Carter",
+  "Benjamin Hill",
+  "Lily Cooper",
+  "Samuel Morales",
+  "Scarlett Hall",
+  "Alexander Reed",
+  "Riley Rogers",
+  "Victoria Foster",
+  "Daniel Perry",
+  "Penelope Brooks",
+  "Matthew Ward",
+  "Natalie Ramirez",
+  "Julian Coleman",
+  "Audrey Long",
+  "David Price",
+  "Layla Richardson",
+  "Christopher Barnes",
+  "Stella Murphy",
+];
+
+const thoughts = [
+    "Coffee = survival juice ☕",
+    "Sunsets make everything better.",
+    "Lost in a book's world 📚",
+    "Current mood: Netflix & snacks 🍿",
+    "Wanderlust hitting hard ✈️",
+    "Embracing the chaos 🌀",
+    "Feeling grateful for small wins.",
+    "Music = therapy 🎶",
+    "Self-care isn't selfish 💆‍♂️",
+    "Living for the weekend vibes.",
+    "Dreaming of beach days 🏖️",
+    "Monday, we meet again 😴",
+    "In need of a digital detox 📵",
+    "Trusting the journey 🌟",
+    "Kindness is contagious 💖",
+    "Making memories, not excuses.",
+    "Adventure awaits 🗺️",
+    "Keepin' it real, always.",
+    "Laughter is the best medicine 😂",
+    "Ready for new beginnings 🌱",
+    "Time to adult... reluctantly.",
+    "Overthinking? Yup, guilty 🤔",
+    "Dancing through life 💃",
+    "Procrastination level: expert 🙈",
+    "Today's goal: find joy in small things.",
+    "Grateful for good friends 👯‍♂️",
+    "Procaffeinating: delaying life until coffee is consumed.",
+    "Positive vibes only ✌️",
+    "Living that #blessed life 🙏",
+    "Sparkle wherever you go ✨",
+    "Learning to let go 🎈",
+    "Weekend warrior mode activated 💪",
+    "Sun-kissed and salty hair 🌞",
+    "Not all who wander are lost 🌍",
+    "Making magic happen ✨",
+    "Reality called, I hung up.",
+    "Growing pains lead to growth 🌱",
+    "Finding beauty in simplicity.",
+    "Plot twist: life is unpredictable.",
+    "Daydreaming about faraway places ✈️",
+    "Ready for a fresh start 🌅",
+    "Slaying one day at a time.",
+    "Embracing imperfections 🌟",
+    "Staying grateful, staying grounded.",
+    "Adventure is out there 🚀",
+    "Taking life one cup of coffee at a time.",
+    "Rainy days call for cozy reads 📖",
+    "Trusting the timing of my life ⏳",
+    "Breathe. It's just a bad day, not a bad life.",
+    "Finding joy in the little things.",    
+];
+
+const reactions = [
+    "Wow!",
+    "Cool!",
+    "Nice!",
+    "Love it!",
+    "Amazing!",
+    "Awesome!",
+    "LOL!",
+    "Yay!",
+    "So true!",
+    "Cute!",
+    "Impressive!",
+    "Great!",
+    "Funny!",
+    "Interesting!",
+    "OMG!",
+    "Adorable!",
+    "Fantastic!",
+    "Brilliant!",
+    "Haha!",
+    "Perfect!",
+    "Sweet!",
+    "Nailed it!",
+    "Super!",
+    "Beautiful!",
+    "Bravo!",
+    "Congrats!",
+    "Yasss!",
+    "Fun!",
+    "Fabulous!",
+    "Woot!",
+    "Lit!",
+    "Genius!",
+    "Spot on!",
+    "Cheers!",
+    "Aww!",
+    "Exciting!",
+    "Clever!",
+    "Woohoo!",
+    "Precious!",
+    "Impressive!",
+    "Kudos!",
+    "Thrilling!",
+    "Iconic!",
+    "Stellar!",
+    "Top!",
+    "Rad!",
+    "Hooray!",
+    "Excellent!",
+    "Delightful!",
+    "Remarkable!",
+]
+
+// Get a random item given an array
+const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+const getRandomName = () => getRandomArrItem(names);
+
+
+const getRandomThoughts = (int) => {
+    let results = [];
+    for (let i = 0; i < int; i++) {
+      results.push({
+        thoughtText: getRandomArrItem(thoughts),
+        username: getRandomArrItem(names),
+        reactions: [...getThoughtReactions(3)],
+      });
+    }
+    return results;
+  };
+
+  const getThoughtReactions = (int) => {
+    if (int === 1) {
+      return getRandomArrItem(reactions);
+    }
+    const results = [];
+    for (let i = 0; i < int; i++) {
+      results.push({
+        reactionBody: getRandomArrItem(reactions),
+        username: getRandomArrItem(names),
+      });
+    }
+    return results;
+  };
+
+module.exports = { getRandomName, getRandomThoughts };
