@@ -11,9 +11,9 @@ connection.once("open", async () => {
   await Thought.deleteMany({});
 
   const users = [];
-  const thoughts = getRandomThoughts(10);
+  const thoughts = getRandomThoughts(30);
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 20; i++) {
     const username = getRandomName();
     const email = `${username.replace(" ", "")}@gmail.com`;
 
