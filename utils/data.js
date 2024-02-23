@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const first = [
   "Jasmine",
   "Connor",
@@ -236,6 +237,7 @@ const getThoughtReactions = (int) => {
     results.push({
       reactionBody: getRandomArrItem(reactions),
       username: getRandomName(),
+      reactionId: new mongoose.Types.ObjectId()
     });
   }
   return results;
