@@ -16,10 +16,14 @@ connection.once("open", async () => {
   for (let i = 0; i < 20; i++) {
     const username = getRandomName();
     const email = `${username.replace(" ", "")}@gmail.com`;
+    const friends = [];
+    const thoughts = [];
 
     users.push({
       username,
       email,
+      friends,
+      thoughts,
     });
   }
 
