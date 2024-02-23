@@ -8,6 +8,7 @@ const thoughtCount = async () =>
 
 module.exports = {
   // Get all thoughts
+  // /api/thoughts
   getThoughts(req, res) {
     Thought.find()
       .then(async (thoughts) => {
@@ -23,6 +24,7 @@ module.exports = {
       });
   },
   // Get a single thought
+  // /api/thoughts/:thoughtId
   getSingleThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
       .select("-__v")
@@ -37,6 +39,7 @@ module.exports = {
       });
   },
   // create a new thought
+  // /api/thoughts/:userId
   createThought(req, res) {
     const { userId } = req.params;
     const { thoughtText } = req.body;
@@ -87,6 +90,7 @@ module.exports = {
       });
   },
   // Delete a thought and remove them from the user
+  // /api/thoughts/:thoughtId
   deleteThought(req, res) {
     Thought.findOneAndRemove({ _id: req.params.thoughtId })
       .then((thought) =>
@@ -111,7 +115,8 @@ module.exports = {
       });
   },
 
-  // Add an reaction to a thought
+  // Add a reaction to a thought
+  // /api/thoughts/:thoughtId/reactions
   addReaction(req, res) {
     console.log("You are adding a reaction");
     console.log(req.body);
@@ -128,6 +133,7 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
   // Remove reaction from a thought
+  // /api/thoughts/:thoughtId/assignments/:assignmentId
   removeReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },

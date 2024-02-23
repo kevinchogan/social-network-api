@@ -2,12 +2,14 @@ const { User, Thought } = require('../models');
 
 module.exports = {
   // Get all users
+  // /api/users
   getUsers(req, res) {
     User.find()
       .then((users) => res.json(users))
       .catch((err) => res.status(500).json(err));
   },
   // Get a user
+  // /api/users/:userId
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
       .select('-__v')
@@ -19,6 +21,7 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
   // Create a user
+  // /api/users
   createUser(req, res) {
     User.create(req.body)
       .then((user) => res.json(user))
@@ -28,6 +31,7 @@ module.exports = {
       });
   },
   // Delete a user
+  // /api/users/:userId
   deleteUser(req, res) {
     User.findOneAndDelete({ _id: req.params.userId })
       .then((user) =>
@@ -39,6 +43,7 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
   // Update a user
+  // /api/users/:userId
   updateUser(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
@@ -54,6 +59,7 @@ module.exports = {
   },
 
   // Add an friend to a user
+  // /api/users/:userId/friends
   addFriend(req, res) {
     console.log('You are adding a friend');
     console.log(req.body);
@@ -72,6 +78,7 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
   // Remove friend from a user
+  // /api/users/:userId/assignments/:friendId
   removeFriend(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
