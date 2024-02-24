@@ -216,23 +216,21 @@ const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 const getRandomName = () => getRandomArrItem(first) + " " + getRandomArrItem(last);
 
-const getRandomThoughts = (int, thoughtIdArray, username) => {
+const getRandomThoughts = (int, thoughtIdArray, username, reactionCount) => {
   let results = [];
   for (let i = 0; i < int; i++) {
+    let reactionArray = [...getThoughtReactions(reactionCount)];
     results.push({
       _id: thoughtIdArray[i],
       thoughtText: getRandomArrItem(thoughts),
       username: username,
-      reactions: [...getThoughtReactions(3)],
+      reactions: reactionArray,
     });
   }
   return results;
 };
 
 const getThoughtReactions = (int) => {
-  if (int === 1) {
-    return getRandomArrItem(reactions);
-  }
   const results = [];
   for (let i = 0; i < int; i++) {
     results.push({

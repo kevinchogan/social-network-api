@@ -13,8 +13,9 @@ connection.once("open", async () => {
 
   const users = [];
   const userCount = 4;
-  const friendCount = 2; // must be no more than userCount - 1
-  const thoughtCount = 2;
+  const friendCount = 1; // must be no more than userCount - 1
+  const thoughtCount = 1;
+  const reactionCount = 1;
   let userIdArray = []
 
   for (let i = 0; i < userCount; i++) {
@@ -43,7 +44,7 @@ connection.once("open", async () => {
     for (let j = 0; j < thoughtCount; j++) {
       thoughtIdArray.push(mongoose.Types.ObjectId())
     }
-    const thoughts = getRandomThoughts(thoughtCount, thoughtIdArray, username);
+    const thoughts = getRandomThoughts(thoughtCount, thoughtIdArray, username, reactionCount);
 
     console.table(thoughts);
     await Thought.collection.insertMany(thoughts);
