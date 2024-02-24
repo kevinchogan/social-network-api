@@ -216,12 +216,13 @@ const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 const getRandomName = () => getRandomArrItem(first) + " " + getRandomArrItem(last);
 
-const getRandomThoughts = (int) => {
+const getRandomThoughts = (int, thoughtIdArray, username) => {
   let results = [];
   for (let i = 0; i < int; i++) {
     results.push({
+      _id: thoughtIdArray[i],
       thoughtText: getRandomArrItem(thoughts),
-      username: getRandomName(),
+      username: username,
       reactions: [...getThoughtReactions(3)],
     });
   }
@@ -238,7 +239,7 @@ const getThoughtReactions = (int) => {
       reactionBody: getRandomArrItem(reactions),
       username: getRandomName(),
       reactionId: new mongoose.Types.ObjectId()
-    });
+    });``
   }
   return results;
 };
