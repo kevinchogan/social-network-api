@@ -89,6 +89,21 @@ module.exports = {
           .json({ message: "Error fetching user", error: userErr.message });
       });
   },
+  // Update a thought
+  // /api/users/:thoughtId
+  updateThought(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $set: req.body },
+      { runValidators: true, new: true }
+    )
+      .then((thought) =>
+        !thought
+          ? res.status(404).json({ message: 'No thought with this id!' })
+          : res.json(thought)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
   // Delete a thought and remove them from the user
   // /api/thoughts/:thoughtId
   deleteThought(req, res) {
