@@ -12,7 +12,7 @@ connection.once("open", async () => {
   await Thought.deleteMany({});
 
   const users = [];
-  const userCount = 4;
+  const userCount = 3;
   const friendCount = 1; // must be no more than userCount - 1
   const thoughtCount = 1;
   const reactionCount = 1;
