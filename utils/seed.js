@@ -11,12 +11,14 @@ connection.once("open", async () => {
   await User.deleteMany({});
   await Thought.deleteMany({});
 
-  const users = [];
+  // Number of elements to seed
   const userCount = 3;
   const friendCount = 1; // must be no more than userCount - 1
   const thoughtCount = 1;
   const reactionCount = 1;
-  let userIdArray = []
+
+  const users = [];
+  const userIdArray = [];
 
   for (let i = 0; i < userCount; i++) {
     userIdArray.push(mongoose.Types.ObjectId())
@@ -28,8 +30,7 @@ connection.once("open", async () => {
     const email = `${username.replace(" ", "")}@gmail.com`;
     const friends = [];
 
-    console.log("Name: ", username);
-
+    // Assigns 'friendCount' number of friends from 'userIdArray' ensuring self-exclusion
     for (let j = 0; j < friendCount; j++) {
       let index;
       if (i + j + 1 >= userCount) {
@@ -39,16 +40,16 @@ connection.once("open", async () => {
       }
       friends.push(userIdArray[index]);
     }
-
+    // Creates thoughts for each user and inserts to DB
     let thoughtIdArray = [];
     for (let j = 0; j < thoughtCount; j++) {
       thoughtIdArray.push(mongoose.Types.ObjectId())
     }
     const thoughts = getRandomThoughts(thoughtCount, thoughtIdArray, username, reactionCount);
-
     console.table(thoughts);
     await Thought.collection.insertMany(thoughts);
 
+    //populate 'users' array with user objects
     users.push({
       _id,
       username,
@@ -59,7 +60,6 @@ connection.once("open", async () => {
   }
 
   await User.collection.insertMany(users);
-
 
   console.table(users);
   console.info("Seeding complete! 🌱");

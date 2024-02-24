@@ -43,14 +43,17 @@ module.exports = {
   createThought(req, res) {
     const { userId } = req.params;
     const { thoughtText } = req.body;
+    // Find the user by param ID to assign and populate thought's username
     User.findById(userId)
       .then((user) => {
         if (!user) {
           return res.status(404).json({ message: "User not found" });
         }
         const { username } = user;
+        // If user found, create thought
         return Thought.create({ thoughtText, username })
           .then((newThought) => {
+            // Populate user's thoughts array with thought ID
             return User.findByIdAndUpdate(
               userId,
               { $push: { thoughts: newThought._id } },
